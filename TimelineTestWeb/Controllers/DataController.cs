@@ -98,7 +98,7 @@ namespace MvcApplication1.Controllers
                         new XAttribute("color", e.Color),
                         new XAttribute("image", e.Image),
                         new XAttribute("link", e.Link),
-                        new XText(e.Text)
+                        new XText(e.Description)
                         )
                     )
                 );
@@ -120,7 +120,7 @@ namespace MvcApplication1.Controllers
                         Color = "Green",
                         Image = "/Content/images/test.png",
                         Link = "/test",
-                        Text = "Blah blah blah."
+                        Description = "Blah blah blah."
                     });
             }
 
