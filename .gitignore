@@ -1,0 +1,5 @@
+*.suo
+*.user
+/TimelineTestWeb/bin/*
+/TimelineTestWeb/obj/*
+/packages/*
