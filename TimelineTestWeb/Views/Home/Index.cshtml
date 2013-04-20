@@ -32,15 +32,18 @@
 
         timeline.Urls = "/Data";
         timeline.CalendarType = "gregorian";
-        //timeline.MinDateTime = "01/01/1830";
-        //timeline.MaxDateTime = "01/01/1930";
+        timeline.MinDateTime = "01/01/1930 12:00:00 AM";
+        timeline.MaxDateTime = "01/01/2030 12:00:00 AM";
         timeline.TeaserSize = 40;
         timeline.MoreLinkText = "more>>";
-        timeline.CurrentDateTime = "01/01/2013";
+        timeline.CurrentDateTime = "01/04/2013 12:00:00 AM";
 
         // 790
         timeline.AddTimelineToolbox();
-        timeline.AddTimelineBand(0, true, "years", 10, 130);
+        timeline.AddTimelineBand(0, true, "days", 30, 120);
+        // timeline.AddTimelineBand(50, true, "weeks", 4, 16);
+        timeline.AddTimelineBand(50, false, "months", 12, 36);
+        timeline.AddTimelineBand(50, false, "years", 10, 130);
         timeline.AddTimelineBand(50, false, "decades", 10, 4);
 
         timeline.Run();

@@ -113,10 +113,11 @@ namespace MvcApplication1.Controllers
 
             for (var i = 0; i <= 10; i++)
             {
+                var startDate = DateTime.Now.AddMonths(i);
                 events.Add(new Event
                     {
-                        Start = DateTime.Now,
-                        End = DateTime.Now.AddMinutes(15),
+                        Start = startDate,
+                        End = startDate.AddYears(2),
                         IsDuration = true,
                         Title = "Blah" + i,
                         Color = "Green",
