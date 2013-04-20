@@ -1,6 +1,67 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
+@section Head
+{
+    <script type="text/javascript" src="Scripts/Silverlight.js"></script>
+}
+
+<script type="text/javascript">
+    function onSilverlightError(sender, args) {
+        var appSource = "";        if (sender != null && sender != 0) {
+            appSource = sender.getHost().Source;
+        }        var errorType = args.ErrorType;        var iErrorCode = args.ErrorCode;        if (errorType == "ImageError" || errorType == "MediaError") {
+            return;
+        }        var errMsg = "Unhandled Error in Silverlight Application " + appSource + "\n";
+        errMsg += "Code: " + iErrorCode + "    \n";        errMsg += "Category: " + errorType + "       \n";        errMsg += "Message: " + args.ErrorMessage + "     \n";
+        if (errorType == "ParserError") {
+            errMsg += "File: " + args.xamlFile + "     \n";            errMsg += "Line: " + args.lineNumber + "     \n";            errMsg += "Position: " + args.charPosition + "     \n";
+        }        else if (errorType == "RuntimeError") {
+            if (args.lineNumber != 0) {
+                errMsg += "Line: " + args.lineNumber + "     \n";                errMsg += "Position: " + args.charPosition + "     \n";
+            }            errMsg += "MethodName: " + args.methodName + "     \n";
+        }        throw new Error(errMsg);
+    }</script>
+<script type="text/javascript">
+    function onSlLoad1(sender, args) {
+        var sl,
+            timeline;
+
+        sl = document.getElementById("timelineControl1");
+        timeline = sl.Content.Instance;
+
+        timeline.Urls = "/Data";
+        timeline.CalendarType = "gregorian";
+        //timeline.MinDateTime = "01/01/1830";
+        //timeline.MaxDateTime = "01/01/1930";
+        timeline.TeaserSize = 40;
+        timeline.MoreLinkText = "more>>";
+        timeline.CurrentDateTime = "01/01/2013";
+
+        // 790
+        timeline.AddTimelineToolbox();
+        timeline.AddTimelineBand(0, true, "years", 10, 130);
+        timeline.AddTimelineBand(50, false, "decades", 10, 4);
+
+        timeline.Run();
+    }
+
+</script>
 
 <h2>Index</h2>
 
+<div id="timelineControlHost" style="width: 100%; height: 550px">
+    <object id="timelineControl1" data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100%" height="100%">
+        <param name="source" value="ClientBin/Timeline.xap" />
+        <param name="onError" value="onSilverlightError" />
+        <param name="background" value="white" />
+        <param name="minRuntimeVersion" value="3.0.40624.0" />
+        <param name="onload" value="onSlLoad1" />
+        <param name="autoUpgrade" value="true" />
+        <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=3.0.40624.0" style="text-decoration: none">
+            <img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="Get Microsoft Silverlight" style="border-style: none" />
+        </a>
+    </object>
+    <iframe id="_sl_historyFrame" style="visibility: hidden; height: 0px; width: 0px; border: 0px"></iframe>
+
+</div>

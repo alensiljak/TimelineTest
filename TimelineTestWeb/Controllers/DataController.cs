@@ -92,9 +92,10 @@ namespace MvcApplication1.Controllers
                 new XElement("data",
                     from e in events
                     select new XElement("event",
+                        new XAttribute("title", e.Title),
                         new XAttribute("start", e.Start.ToString("MM\\/dd\\/yyyy hh:mm:ss tt")),
                         new XAttribute("end", e.End.ToString("MM\\/dd\\/yyyy hh:mm:ss tt")),
-                        new XAttribute("title", e.Title),
+                        new XAttribute("isDuration", e.IsDuration.ToString()),
                         new XAttribute("color", e.Color),
                         new XAttribute("image", e.Image),
                         new XAttribute("link", e.Link),
@@ -116,6 +117,7 @@ namespace MvcApplication1.Controllers
                     {
                         Start = DateTime.Now,
                         End = DateTime.Now.AddMinutes(15),
+                        IsDuration = true,
                         Title = "Blah" + i,
                         Color = "Green",
                         Image = "/Content/images/test.png",
