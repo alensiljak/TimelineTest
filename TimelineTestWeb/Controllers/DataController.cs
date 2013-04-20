@@ -93,7 +93,12 @@ namespace MvcApplication1.Controllers
                     from e in events
                     select new XElement("event",
                         new XAttribute("start", e.Start.ToString("MM\\/dd\\/yyyy hh:mm:ss tt")),
-                        new XAttribute("title", e.Title)
+                        new XAttribute("end", e.End.ToString("MM\\/dd\\/yyyy hh:mm:ss tt")),
+                        new XAttribute("title", e.Title),
+                        new XAttribute("color", e.Color),
+                        new XAttribute("image", e.Image),
+                        new XAttribute("link", e.Link),
+                        new XText(e.Text)
                         )
                     )
                 );
@@ -101,16 +106,23 @@ namespace MvcApplication1.Controllers
             return doc;
         }
 
-        private List<Event> GetDummyEvents()
+        private IEnumerable<Event> GetDummyEvents()
         {
             var events = new List<Event>();
 
-            events.Add(new Event
-                {
-                    Start = DateTime.Now,
-                    End = DateTime.Now.AddMinutes(15),
-                    Title = "Blah"
-                });
+            for (var i = 0; i <= 10; i++)
+            {
+                events.Add(new Event
+                    {
+                        Start = DateTime.Now,
+                        End = DateTime.Now.AddMinutes(15),
+                        Title = "Blah" + i,
+                        Color = "Green",
+                        Image = "/Content/images/test.png",
+                        Link = "/test",
+                        Text = "Blah blah blah."
+                    });
+            }
 
             return events;
         }

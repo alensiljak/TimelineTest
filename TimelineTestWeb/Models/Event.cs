@@ -10,5 +10,9 @@ namespace MvcApplication1.Models
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public string Title { get; set; }
+        public string Color { get; set; }
+        public string Image { get; set; }
+        public string Link { get; set; }
+        public string Text { get; set; }
     }
 }
