@@ -120,7 +120,7 @@ namespace MvcApplication1.Controllers
                         End = startDate.AddYears(2),
                         IsDuration = true,
                         Title = "Blah" + i,
-                        Color = "Green",
+                        Color = i % 2 == 0 ? "Green" : "Red",
                         Image = "/Content/images/test.png",
                         Link = "/test",
                         Description = "Blah blah blah."
